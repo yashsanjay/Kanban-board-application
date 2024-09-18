@@ -15,7 +15,7 @@ import urgentclricn from "../icons_FEtask/SVG - Urgent Priority colour.svg";
 import highpriorityicn from "../icons_FEtask/Img - High Priority.svg";
 import lowpriorityicn from "../icons_FEtask/Img - Low Priority.svg";
 import mediumpriorityicn from "../icons_FEtask/Img - Medium Priority.svg";
-import nopriority from "../icons_FEtask/No-Priority.svg";
+import nopriority from "../icons_FEtask/No-priority.svg";
 
 const KanbanBoard = () => {
   const [tickets, setTickets] = useState([]);

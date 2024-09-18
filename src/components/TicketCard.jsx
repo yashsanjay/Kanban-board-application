@@ -1,14 +1,14 @@
 import React from "react";
 import "../styles/TicketCard.css";
-import urgentclricn from "../../public/icons_FEtask/SVG - Urgent Priority colour.svg";
-import highpriorityicn from "../../public/icons_FEtask/Img - High Priority.svg";
-import lowpriorityicn from "../../public/icons_FEtask/Img - Low Priority.svg";
-import mediumpriorityicn from "../../public/icons_FEtask/Img - Medium Priority.svg";
-import nopriority from "../../public/icons_FEtask/No-Priority.svg";
-import todoicn from "../../public/icons_FEtask/To-do.svg";
-import inprogressicn from "../../public/icons_FEtask/in-progress.svg";
-import backlogicn from "../../public/icons_FEtask/Backlog.svg";
-import doneicn from "../../public/icons_FEtask/Done.svg";
+import urgentclricn from "../icons_FEtask/SVG - Urgent Priority colour.svg";
+import highpriorityicn from "../icons_FEtask/Img - High Priority.svg";
+import lowpriorityicn from "../icons_FEtask/Img - Low Priority.svg";
+import mediumpriorityicn from "../icons_FEtask/Img - Medium Priority.svg";
+import nopriority from "../icons_FEtask/No-Priority.svg";
+import todoicn from "../icons_FEtask/To-do.svg";
+import inprogressicn from "../icons_FEtask/in-progress.svg";
+import backlogicn from "../icons_FEtask/Backlog.svg";
+import doneicn from "../icons_FEtask/Done.svg";
 
 const TicketCard = ({ ticket, users, groupBy }) => {
   const assignedUser = users.find((user) => user.id === ticket.userId)?.name;

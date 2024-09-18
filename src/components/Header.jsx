@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "../styles/Header.css";
-import displayicn from "../../public/icons_FEtask/Display.svg";
-import downicn from "../../public/icons_FEtask/down.svg";
+import displayicn from "../icons_FEtask/Display.svg";
+import downicn from "../icons_FEtask/down.svg";
 
 const Header = ({ groupBy, sortBy, handleGroupChange, handleSortChange }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);

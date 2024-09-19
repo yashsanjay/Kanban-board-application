@@ -1,5 +1,5 @@
 
-.kanban-container {
+ .kanban-container {
   padding: 20px;
   background-color: #f9fafb;
 }
@@ -8,7 +8,6 @@
   display: flex;
   gap: 20px;
   overflow-x: auto;
-  /* background-color: #f3f4f6; */
 }
 
 .kanban-column {
@@ -30,8 +29,37 @@
   gap: 10px;
 }
 
-.kanban-inner-div{
+.kanban-inner-div {
   display: flex;
 }
 
+.kanban-header-content {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+}
 
+.kanban-header-icons {
+  margin-top: 5px;
+  display: flex;
+  align-items: center;
+}
+
+.kanban-header-title {
+  margin-left: 10px; 
+  flex-grow: 0; 
+}
+
+.kanban-header-count {
+  margin-top: 5px;
+  margin-left: 10px; 
+  font-weight: 500; 
+}
+
+.kanban-header-actions {
+  margin-top: 5px;
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 5px; 
+} 

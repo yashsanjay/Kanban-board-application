@@ -1,9 +1,9 @@
 .header {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
-  padding: 10px;
-  background-color: white!;
+  padding: 10px 20px;
+  background-color: #ffffff;
   border-bottom: 1px solid #e5e7eb;
   position: relative;
 }
@@ -11,52 +11,64 @@
 .display-button {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   background: none;
-  border: 2px solid rgb(174, 174, 174);
-  border-radius: 7px;
-  font-size: 16px;
-  color: #6b7280;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  font-size: 14px;
+  color: #1f2733;
   cursor: pointer;
+  padding: 6px 12px;
+  width: 120px;
 }
 
-.dropdowns {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.dropdowns label {
-  font-size: 14px;
-  color: #374151;
-}
-
-.dropdowns select {
-  margin-left: 5px;
-  padding: 5px;
-  border-radius: 4px;
-  border: 1px solid #d1d5db;
-  background-color: white;
-  font-size: 14px;
-  color: #374151;
+.display-button img {
+  width: 16px;
+  height: 16px;
 }
 
 .dropdown-menu {
   position: absolute;
-  top: 100%;
-  left: 0;
+  top: calc(100% + 5px);
+  left: 20px;
   background-color: white;
-  border: 1px solid #d1d5db;
-  border-radius: 4px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-  padding: 10px;
-  z-index: 1000; 
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  z-index: 1000;
+  width: 280px;
 }
 
 .dropdown-section {
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 
 .dropdown-section:last-child {
   margin-bottom: 0;
+}
+
+.dropdown-section label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+  color: #6b7280;
+  margin-bottom: 5px;
+}
+
+.selectclass {
+  width: 130px;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  color: #1f2733;
+  padding: 6px 10px;
+  font-size: 14px;
+  background-color: white;
+  cursor: pointer;
+}
+
+.selectclass:focus {
+  outline: none;
+  border-color: #a0a0a0;
 }

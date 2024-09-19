@@ -31,7 +31,7 @@ const Header = ({ groupBy, sortBy, handleGroupChange, handleSortChange }) => {
           <div className="dropdown-section">
             <label>
               Grouping:
-              <select value={groupBy} onChange={handleGroupChange}>
+              <select value={groupBy} onChange={handleGroupChange} className="selectclass">
                 <option value="status">Status</option>
                 <option value="userId">User</option>
                 <option value="priority">Priority</option>
@@ -41,7 +41,7 @@ const Header = ({ groupBy, sortBy, handleGroupChange, handleSortChange }) => {
           <div className="dropdown-section">
             <label>
               Ordering:
-              <select value={sortBy} onChange={handleSortChange}>
+              <select value={sortBy} onChange={handleSortChange} className="selectclass">
                 <option value="priority">Priority</option>
                 <option value="title">Title</option>
               </select>

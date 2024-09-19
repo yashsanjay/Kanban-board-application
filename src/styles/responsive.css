@@ -1,0 +1,97 @@
+/* General Styles */
+.kanban-header-actions {
+    display: flex;
+    align-items: center;
+    gap: 5px; /* Add gap between icons */
+    overflow: hidden; /* Hide overflow to prevent icons from sticking out */
+    padding: 0 10px; /* Add padding to ensure content doesn’t touch edges */
+  }
+  
+  /* Responsive adjustments for Kanban Board */
+  @media (max-width: 1200px) {
+    .kanban-board {
+      flex-direction: column;
+    }
+  
+    .kanban-column {
+      min-width: auto; /* Adjust column width to fit within container */
+    }
+  
+    .kanban-header-actions {
+      justify-content: space-between;
+      margin-top: 5px;
+    }
+  
+    .kanban-header-actions img {
+      width: 20px; /* Ensure icons are appropriately sized for smaller screens */
+      height: 20px;
+    }
+  }
+  
+  @media (max-width: 992px) {
+    .kanban-board {
+      flex-direction: column;
+      gap: 15px;
+    }
+  
+    .kanban-column {
+      min-width: auto; /* Adjust column width to fit within container */
+    }
+  
+    .kanban-header-actions {
+      justify-content: space-between;
+      margin-top: 5px;
+    }
+  
+    .kanban-header-actions img {
+      width: 20px; /* Ensure icons are appropriately sized for smaller screens */
+      height: 20px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .kanban-board {
+      flex-direction: column;
+      gap: 10px;
+    }
+  
+    .kanban-column {
+      min-width: auto; /* Adjust column width to fit within container */
+    }
+  
+    .kanban-header-actions {
+      flex-wrap: wrap; /* Allow icons to wrap if necessary */
+      justify-content: space-between;
+      margin-top: 5px;
+      padding: 0 10px; /* Add padding to ensure icons don't touch the edges */
+    }
+  
+    .kanban-header-actions img {
+      width: 18px; /* Adjust icon size for smaller screens */
+      height: 18px;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .kanban-board {
+      flex-direction: column;
+      gap: 5px;
+    }
+  
+    .kanban-column {
+      min-width: auto; /* Adjust column width to fit within container */
+    }
+  
+    .kanban-header-actions {
+      flex-wrap: wrap; /* Allow icons to wrap if necessary */
+      justify-content: space-between;
+      margin-top: 5px;
+      padding: 0 5px; /* Add padding to ensure icons don't touch the edges */
+    }
+  
+    .kanban-header-actions img {
+      width: 16px; /* Further adjust icon size for very small screens */
+      height: 16px;
+    }
+  }
+  

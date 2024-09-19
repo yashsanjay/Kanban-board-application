@@ -20,16 +20,15 @@ import nopriority from "../icons_FEtask/No-priority.svg";
 const KanbanBoard = () => {
   const [tickets, setTickets] = useState([]);
   const [users, setUsers] = useState([]);
-  const [groupBy, setGroupBy] = useState(() => {
-    
-    return localStorage.getItem("groupBy") || "status";
-  });
-  const [sortBy, setSortBy] = useState(() => {
-   
-    return localStorage.getItem("sortBy") || "priority";
-  });
+  const [groupBy, setGroupBy] = useState(
+    () => localStorage.getItem("groupBy") || "status"
+  );
+  const [sortBy, setSortBy] = useState(
+    () => localStorage.getItem("sortBy") || "priority"
+  );
   const [groupedTickets, setGroupedTickets] = useState({});
 
+  // Fetch data from the API on mount
   useEffect(() => {
     axios
       .get("https://api.quicksell.co/v1/internal/frontend-assignment")
@@ -41,14 +40,15 @@ const KanbanBoard = () => {
       .catch((error) => console.error(error));
   }, []);
 
+  // Update grouped tickets when tickets, groupBy, or sortBy change
   useEffect(() => {
     const grouped = groupTickets(tickets, groupBy, users);
     const sorted = sortTickets(grouped, sortBy);
     setGroupedTickets(sorted);
   }, [tickets, groupBy, sortBy]);
 
+  // Save groupBy and sortBy preferences to local storage
   useEffect(() => {
-    
     localStorage.setItem("groupBy", groupBy);
     localStorage.setItem("sortBy", sortBy);
   }, [groupBy, sortBy]);
@@ -56,7 +56,6 @@ const KanbanBoard = () => {
   const handleGroupChange = (e) => setGroupBy(e.target.value);
   const handleSortChange = (e) => setSortBy(e.target.value);
 
-  
   const getCardCountByGroup = () => {
     const cardCount = {};
     Object.keys(groupedTickets).forEach((group) => {
@@ -65,7 +64,6 @@ const KanbanBoard = () => {
     return cardCount;
   };
 
-  
   const cardCountByGroup = getCardCountByGroup();
 
   return (
@@ -77,98 +75,120 @@ const KanbanBoard = () => {
         handleSortChange={handleSortChange}
       />
       <div className="kanban-board">
-        {Object.keys(groupedTickets).map((group) => (
-          <div className="kanban-column" key={group}>
-            <div className="kanban-inner-div">
-              <div style={{ paddingTop: "16px" }}>
-                {group === "Todo" && (
-                  <img src={todoicn} alt="" style={{ marginRight: "15px" }} />
-                )}
-                {group === "In progress" && (
-                  <img
-                    src={inprogressicn}
-                    alt=""
-                    style={{ marginRight: "15px" }}
-                  />
-                )}
-                {group === "Backlog" && (
-                  <img
-                    src={backlogicn}
-                    alt=""
-                    style={{ marginRight: "15px" }}
-                  />
-                )}
-                {group === "Done" && (
-                  <img src={doneicn} alt="" style={{ marginRight: "15px" }} />
-                )}
-                {group === "Cancelled" && (
-                  <img src={cancelicn} alt="" style={{ marginRight: "15px" }} />
-                )}
-                {group === "Urgent" && (
-                  <img
-                    src={urgentclricn}
-                    alt=""
-                    style={{ marginRight: "15px" }}
-                  />
-                )}
-                {group === "High" && (
-                  <img
-                    src={highpriorityicn}
-                    alt=""
-                    style={{ marginRight: "15px" }}
-                  />
-                )}
-                {group === "Low" && (
-                  <img
-                    src={lowpriorityicn}
-                    alt=""
-                    style={{ marginRight: "15px" }}
-                  />
-                )}
-                {group === "Medium" && (
-                  <img
-                    src={mediumpriorityicn}
-                    alt=""
-                    style={{ marginRight: "15px" }}
-                  />
-                )}
-                {group === "No priority" && (
-                  <img
-                    src={nopriority}
-                    alt=""
-                    style={{ marginRight: "15px" }}
-                  />
-                )}
+        {groupBy === "status"
+          ? ["Backlog", "Todo", "In progress", "Done", "Cancelled"].map(
+              (status) => (
+                <div className="kanban-column" key={status}>
+                  <div className="kanban-header">
+                    <div className="kanban-header-content">
+                      <div className="kanban-header-icons">
+                        {status === "Todo" && <img src={todoicn} alt="todo" />}
+                        {status === "In progress" && (
+                          <img src={inprogressicn} alt="in progress" />
+                        )}
+                        {status === "Backlog" && (
+                          <img src={backlogicn} alt="backlog" />
+                        )}
+                        {status === "Done" && <img src={doneicn} alt="done" />}
+                        {status === "Cancelled" && (
+                          <img src={cancelicn} alt="cancelled" />
+                        )}
+                      </div>
+                      <h3 className="kanban-header-title">{status}</h3>
+                      <div className="kanban-header-count">
+                        {cardCountByGroup[status] || 0}
+                      </div>
+                      <div className="kanban-header-actions">
+                        <img src={addicn} alt="add" />
+                        <img src={threedoticn} alt="menu" />
+                      </div>
+                    </div>
+                  </div>
+                  <div className="tickets">
+                    {groupedTickets[status]?.map((ticket) => (
+                      <TicketCard
+                        key={ticket.id}
+                        groupBy={groupBy}
+                        ticket={ticket}
+                        users={users}
+                      />
+                    ))}
+                  </div>
+                </div>
+              )
+            )
+          : groupBy === "priority"
+          ? ["No priority", "Urgent", "High", "Medium", "Low"].map(
+              (priority) => (
+                <div className="kanban-column" key={priority}>
+                  <div className="kanban-header">
+                    <div className="kanban-header-content">
+                      <div className="kanban-header-icons">
+                        {priority === "Urgent" && (
+                          <img src={urgentclricn} alt="urgent" />
+                        )}
+                        {priority === "High" && (
+                          <img src={highpriorityicn} alt="high priority" />
+                        )}
+                        {priority === "Medium" && (
+                          <img src={mediumpriorityicn} alt="medium priority" />
+                        )}
+                        {priority === "Low" && (
+                          <img src={lowpriorityicn} alt="low priority" />
+                        )}
+                        {priority === "No priority" && (
+                          <img src={nopriority} alt="no priority" />
+                        )}
+                      </div>
+                      <h3 className="kanban-header-title">{priority}</h3>
+                      <div className="kanban-header-count">
+                        {cardCountByGroup[priority] || 0}
+                      </div>
+                      <div className="kanban-header-actions">
+                        <img src={addicn} alt="add" />
+                        <img src={threedoticn} alt="menu" />
+                      </div>
+                    </div>
+                  </div>
+                  <div className="tickets">
+                    {groupedTickets[priority]?.map((ticket) => (
+                      <TicketCard
+                        key={ticket.id}
+                        groupBy={groupBy}
+                        ticket={ticket}
+                        users={users}
+                      />
+                    ))}
+                  </div>
+                </div>
+              )
+            )
+          : Object.keys(groupedTickets).map((group) => (
+              <div className="kanban-column" key={group}>
+                <div className="kanban-header">
+                  <div className="kanban-header-content">
+                    <h3 className="kanban-header-title">{group}</h3>
+                    <div className="kanban-header-count">
+                      {cardCountByGroup[group] || 0}
+                    </div>
+                    <div className="kanban-header-actions">
+                      <img src={addicn} alt="add" />
+                      <img src={threedoticn} alt="menu" />
+                    </div>
+                  </div>
+                </div>
+                <div className="tickets">
+                  {groupedTickets[group]?.map((ticket) => (
+                    <TicketCard
+                      key={ticket.id}
+                      groupBy={groupBy}
+                      ticket={ticket}
+                      users={users}
+                    />
+                  ))}
+                </div>
               </div>
-              <div>
-                <h3 style={{ textWrap: "nowrap" }}>{group}</h3>
-              </div>
-              <div style={{ paddingTop: "16px", marginLeft: "20px" }}>
-                {cardCountByGroup[group]}
-              </div>
-              <div
-                style={{
-                  paddingTop: "16px",
-                  marginLeft: "120px",
-                  textWrap: "nowrap",
-                }}
-              >
-                <img src={addicn} alt="" style={{ marginRight: "15px" }} />
-                <img src={threedoticn} alt="" />
-              </div>
-            </div>
-            <div className="tickets">
-              {groupedTickets[group].map((ticket) => (
-                <TicketCard
-                  key={ticket.id}
-                  groupBy={groupBy}
-                  ticket={ticket}
-                  users={users}
-                />
-              ))}
-            </div>
-          </div>
-        ))}
+            ))}
       </div>
     </div>
   );

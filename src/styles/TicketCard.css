@@ -1,3 +1,4 @@
+/* Ensures the ticket card width always matches the width of its container */
 .ticket-card {
   background-color: white!;
   border-radius: 8px;
@@ -7,9 +8,11 @@
   display: flex;
   justify-content: space-between;
   font-family: Arial, sans-serif;
-  max-width: 300px;
+  width: 100%; /* Adjust width to fill the container */
+  box-sizing: border-box; /* Include padding and border in width */
 }
 
+/* Ensures consistent height for ticket card titles */
 .ticket-card h4 {
   font-size: 16px;
   font-weight: 500;
@@ -60,7 +63,7 @@
   font-size: 12px;
   font-weight: bold;
   color: #fff;
-  position: relative;
+  position: relative; /* Keep the position unchanged */
 }
 
 .ticket-card .status-dot {
@@ -83,7 +86,7 @@
 
 .ticket-card .feature-tag {
   text-wrap: nowrap;
-  border: #f6f7fa 0.1px solid;
+  border: #eeeff1 0.1px solid;
   border-radius: 6px;
   padding: 4px 8px;
   font-size: 12px;
@@ -106,18 +109,28 @@
   align-items: center;
 }
 
-.priority-icon-wrapper,
-.status-icon-wrapper,
-.feature-tag {
+.Ticket-innerdiv2 {
+  border: #eeeff1 0.1px solid;
+  border-radius: 6px;
+  padding: 4px 8px;
   display: flex;
   align-items: center;
+  gap: 8px; 
 }
 
 .priority-icon-wrapper img,
 .status-icon-wrapper img {
-  margin-right: 15px;
+  padding: 4px 8px; 
 }
 
 .Ticket-innerdiv > *:empty {
   display: none;
+}
+
+.ticketcard-div1 {
+  display: flex;
+}
+
+.ticketcard-div2 {
+  margin-right: 3px;
 }
